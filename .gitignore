@@ -1,0 +1,25 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+rsconnect/
+
+# Temp files
+*.tmp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# renv (if used)
+renv/library/
+renv/.cache/
+
+# Packrat
+packrat/lib*/
+packrat/src/
+
+# Logs
+*.log
