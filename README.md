@@ -1,5 +1,12 @@
 <div align="center">
 
+<!-- â–ˆâ–ˆ LIVE APP LINK â€” click to open â–ˆâ–ˆ -->
+<a href="https://abhishekkothe.shinyapps.io/dynamic-reporting-tool/" target="_blank">
+  <img src="https://img.shields.io/badge/ðŸŒ%20LIVE%20APP%20-%20Click%20to%20Launch-6366f1?style=for-the-badge&logoColor=white&labelColor=0d111e" width="320"/>
+</a>
+
+<br/><br/>
+
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dynamic%20Reporting%20Tool&fontSize=40&fontColor=fff&animation=twinkling&fontAlignY=38&desc=Real-Time%20Interactive%20Data%20Analytics%20%7C%20R%20Shiny&descAlignY=58&descSize=16&descColor=a5b4fc" width="100%"/>
 
 <!-- Typing animation -->
