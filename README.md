@@ -30,6 +30,14 @@
 
 </div>
 
+
+
+## 🚀 Dynamic Reporting Tool
+
+> ⚡ Generate real-time insights with interactive dashboards and dynamic reports using **R Shiny**
+
+
+
 ---
 
 ## Overview
@@ -56,209 +64,195 @@
 
 ---
 
-## Features
+## 📊 Features
 
-### Dashboard
-- **4 Live KPI Boxes** â€” Total Rows, Variables, Numeric Variables, Missing Values (update on every filter)
-- **Distribution Histogram** â€” Auto-renders for the primary numeric variable
-- **Correlation Heatmap** â€” Cyan-to-indigo plotly heatmap for all numeric columns
-- **Statistical Summary** â€” Full `R summary()` output in a dark-styled panel
-- **Dataset Snapshot** â€” Top 8 rows of the active dataset
+### 📌 Dashboard
 
-### Real-Time Filtering
-- **Numeric range sliders** â€” Auto-generated per dataset (up to 3 variables)
-- **Multi-select pickers** â€” For categorical columns with live search
-- **Apply / Reset** â€” One-click filter application and reset with notification
-
-### Interactive Visualizations (6 Chart Types)
-
-| Chart Type | Description |
-|------------|-------------|
-| **Scatter Plot** | X vs Y with optional OLS trend line |
-| **Bar Chart** | Aggregated mean per category |
-| **Box Plot** | IQR, whiskers, and outliers |
-| **Histogram** | Frequency distribution |
-| **Line Chart** | Ordered connected data points |
-| **Violin Plot** | Density + box + mean marker |
-
-- **Color-by-variable** grouping across 8-color neon palette
-- **Faceted small-multiples** â€” up to 12 panels per categorical variable
-- **Dark chart theme** â€” transparent canvas + Inter typography
-
-### Data Explorer
-- Searchable, sortable, paginated **DT table**
-- **Column selector** â€” choose which columns to display
-- **Sort direction toggle** â€” ascending / descending
-- **Export:** CSV, Excel (.xlsx), PDF, Print, Copy
-
-### Automated Report Generation
-- **Live preview** panel before download
-- **HTML & PDF** output formats
-- **Configurable sections** â€” KPI Summary, Data Table, Visualizations, Statistical Analysis
-- **Custom title, author name, analysis notes**
-- **Pandoc auto-detection** â€” falls back to a self-contained R-only HTML report
-
-### Premium UI/UX
-- Deep-space dark theme `#080c14` with **glassmorphism cards**
-- Neon accent palette â€” indigo `#6366f1`, cyan `#06b6d4`, emerald `#10b981`
-- **Inter** typeface via Google Fonts
-- Smooth **fadeUp tab transitions**, hover lift effects on KPI cards
-- Custom scrollbar, dark notification toasts, dark disconnected overlay
-- Dropdown **z-index fix** â€” no clipping behind sibling cards
+* 📦 **4 Live KPI Boxes** — Total Rows, Variables, Numeric Variables, Missing Values (auto-update on filter)
+* 📈 **Distribution Histogram** — Auto-renders for selected numeric variable
+* 🔥 **Correlation Heatmap** — Interactive plotly heatmap
+* 📋 **Statistical Summary** — Full `R summary()` output in styled panel
+* 👀 **Dataset Snapshot** — Top 8 rows preview
 
 ---
 
-## Tech Stack
+### ⚙️ Real-Time Filtering
 
-| Package | Role |
-|---------|------|
-| `shiny` | Core reactive web framework |
-| `shinydashboard` | Dashboard layout â€” sidebar, boxes, value boxes |
-| `shinyWidgets` | Enhanced widgets (`pickerInput`, `sliderInput`) |
-| `plotly` | Interactive, animated charts |
-| `dplyr` | Fast, expressive data manipulation |
-| `DT` | Interactive JavaScript data tables |
-| `ggplot2` | Base plotting support |
-| `scales` | Number formatting helpers |
-| `openxlsx` | Excel (.xlsx) export |
-| `rmarkdown` + `knitr` | Report rendering |
-| `htmltools` | Safe HTML construction for fallback reports |
+* 🎚️ **Numeric range sliders** — Auto-generated filters
+* 🔍 **Multi-select pickers** — For categorical data with search
+* 🔄 **Apply / Reset Buttons** — One-click filtering with notifications
 
 ---
 
-## Project Structure
+### 📉 Interactive Visualizations (6 Types)
+
+| 📊 Chart Type   | 📖 Description                  |
+| --------------- | ------------------------------- |
+| 📍 Scatter Plot | X vs Y with optional trend line |
+| 📊 Bar Chart    | Aggregated values per category  |
+| 📦 Box Plot     | Distribution with outliers      |
+| 📉 Histogram    | Frequency distribution          |
+| 📈 Line Chart   | Ordered trends                  |
+| 🎻 Violin Plot  | Density + distribution          |
+
+* 🎨 Color grouping with neon palette
+* 🧩 Faceted small-multiples (up to 12 panels)
+* 🌙 Dark theme visualizations
+
+---
+
+### 🧾 Data Explorer
+
+* 🔎 Searchable, sortable **DT table**
+* 🧩 Column selector
+* 🔄 Sorting toggle
+* 📤 Export options: CSV, Excel, PDF, Print, Copy
+
+---
+
+### 📄 Automated Report Generation
+
+* 👁️ Live preview before download
+* 📥 Export formats: HTML & PDF
+* 🛠️ Configurable sections (KPI, Charts, Tables, Analysis)
+* ✍️ Custom title, author, notes
+* ⚡ Smart fallback (HTML if PDF not available)
+
+---
+
+### 🎨 Premium UI/UX
+
+* 🌌 Dark theme with glassmorphism design
+* 💡 Neon accents (Indigo, Cyan, Emerald)
+* 🔤 Inter font for clean typography
+* ✨ Smooth animations & hover effects
+* 🔔 Toast notifications & polished UI
+
+---
+
+## 🛠️ Tech Stack
+
+| ⚙️ Package       | 📌 Role            |
+| ---------------- | ------------------ |
+| `shiny`          | Core framework     |
+| `shinydashboard` | UI layout          |
+| `shinyWidgets`   | Advanced inputs    |
+| `plotly`         | Interactive charts |
+| `dplyr`          | Data manipulation  |
+| `DT`             | Data tables        |
+| `ggplot2`        | Visualization      |
+| `openxlsx`       | Excel export       |
+| `rmarkdown`      | Report generation  |
+
+---
+
+## 📂 Project Structure
 
 ```
 Dynamic Reporting Tool/
-â”œâ”€â”€ app.R                  # Entry point â€” sources ui.R + server.R
-â”œâ”€â”€ ui.R                   # Full dashboard UI + 500+ line premium CSS
-â”œâ”€â”€ server.R               # All reactive logic, filtering, charts, export
-â”œâ”€â”€ global.R               # Package auto-install + global helpers
-â”œâ”€â”€ report_template.Rmd    # Parameterised Rmd template (rmarkdown path)
-â”œâ”€â”€ deploy_shinyapps.R     # One-click shinyapps.io deploy script
-â”œâ”€â”€ www/
-â”‚   â””â”€â”€ report.css         # Styles for generated HTML reports
-â””â”€â”€ screenshots/           # README screenshot assets
+├── app.R
+├── ui.R
+├── server.R
+├── global.R
+├── report_template.Rmd
+├── deploy_shinyapps.R
+├── www/
+│   └── report.css
+└── screenshots/
 ```
 
 ---
 
-## Installation & Setup
+## ⚙️ Installation & Setup
 
-### Prerequisites
-- **R >= 4.0** â€” [Download from CRAN](https://cran.r-project.org/)
-- **RStudio** (recommended) â€” [Download](https://posit.co/download/rstudio-desktop/)
+### ✅ Prerequisites
 
-### Run Locally
+* R ≥ 4.0
+* RStudio (recommended)
+
+---
+
+### ▶️ Run Locally
 
 ```r
-# 1. Clone the repository
-# git clone https://github.com/Abhishek7439/dynamic-reporting-tool.git
-# cd dynamic-reporting-tool
-
-# 2. Open in RStudio or run directly
-# All packages install automatically on first launch via global.R
-
-# 3. Start the app
 shiny::runApp(".", launch.browser = TRUE, port = 3838)
 ```
 
-Or from terminal / PowerShell:
+---
 
-```powershell
-Rscript -e "shiny::runApp('.', launch.browser=TRUE)"
-```
-
-### Optional: Enable PDF Reports
+### 📄 Enable PDF Reports (Optional)
 
 ```r
-tinytex::install_tinytex()   # One-time setup for LaTeX / PDF export
+tinytex::install_tinytex()
 ```
 
 ---
 
-## Usage Instructions
+## 🧑‍💻 Usage Instructions
 
-1. **Select a dataset** from the sidebar dropdown (mtcars, iris, airquality, or upload CSV)
-2. **Apply filters** using the auto-generated sliders and multi-select pickers, then click **Apply Filters**
-3. Navigate to **Data Explorer** to browse, search, sort, and export the filtered table
-4. Go to **Visualizations** â€” choose chart type, X/Y variables, color grouping, and chart theme
-5. Toggle **Show Trend Line** on scatter plots or expand **Faceted Small-Multiples**
-6. Visit **Report Export** â€” configure title, author, notes, sections, format then click **Generate & Download Report**
-
----
-
-## Live Demo
-
-> The app is publicly deployed on **shinyapps.io** (free tier)
-
-**[Launch Live Demo](https://abhishekkothe.shinyapps.io/dynamic-reporting-tool/)**
-
-```
-https://abhishekkothe.shinyapps.io/dynamic-reporting-tool/
-```
+1. 📂 Select dataset (or upload CSV)
+2. 🎛️ Apply filters
+3. 📊 Explore data in tables
+4. 📈 Generate visualizations
+5. 📥 Export reports
 
 ---
 
-## Built-in Datasets
+## 🌐 Live Demo
 
-| Dataset | Rows | Variables | Description |
-|---------|------|-----------|-------------|
-| `mtcars` | 32 | 11 | Motor Trend 1974 car road tests |
-| `iris` | 150 | 5 | Fisher's iris flower measurements |
-| `airquality` | 153 | 6 | NY air quality May-Sep 1973 |
-| Upload CSV | Any | Any | Your own custom dataset |
+🔗 https://abhishekkothe.shinyapps.io/dynamic-reporting-tool/
 
 ---
 
-## Future Enhancements
+## 📊 Built-in Datasets
 
-- [ ] **User Authentication** â€” `shinymanager` integration for secure login
-- [ ] **ML Clustering** â€” K-means or DBSCAN segmentation layer
-- [ ] **Predictive Analytics** â€” Linear/logistic regression overlay on charts
-- [ ] **Real-Time Data** â€” API-connected live feeds (stock prices, weather)
-- [ ] **Multi-Dataset Join** â€” Merge two uploaded CSVs on a common key
-- [ ] **Dashboard Themes** â€” Light mode toggle alongside dark glassmorphism
-- [ ] **Scheduled Reports** â€” Email-triggered automated PDF delivery
-
----
-
-## Contributors
-
-| Name | Role |
-|------|------|
-| **Abhishek** | Lead Developer â€” UI, Server Logic, Deployment |
-| **Group Members** | Academic Project Collaborators |
-
-> **Group Academic Project** â€” Dynamic Reporting Tool
-> Built for live academic evaluation demonstrating R Shiny capabilities.
+| Dataset      | 📌 Description |
+| ------------ | -------------- |
+| `mtcars`     | Car data       |
+| `iris`       | Flower dataset |
+| `airquality` | Air data       |
+| CSV Upload   | Custom data    |
 
 ---
 
-## License
+## 🚀 Future Enhancements
 
-This project is licensed under the **[MIT License](LICENSE)** â€” free to use, modify, and distribute.
+* 🔐 User Authentication
+* 🤖 Machine Learning Integration
+* 📡 Real-time API data
+* 🔗 Multi-dataset joins
+* 🌗 Light/Dark toggle
+* ⏰ Scheduled reports
 
 ---
 
-## Acknowledgements
+## 👨‍💻 Contributors
 
-- [Posit / RStudio](https://posit.co/) â€” for the incredible R Shiny ecosystem
-- [Plotly R](https://plotly.com/r/) â€” for beautiful interactive charts
-- [capsule-render](https://github.com/kyechan99/capsule-render) â€” animated banner
-- [readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg) â€” typing animation
-- [shields.io](https://shields.io/) â€” badge generation
+* **Abhishek** — Lead Developer
+* 👥 Team Members — Project Contributors
+
+---
+
+## 📜 License
+
+📝 MIT License — Free to use and modify
+
+---
+
+## 🙌 Acknowledgements
+
+* 💙 R Shiny Community
+* 📊 Plotly
+* 🛠️ Open Source Contributors
 
 ---
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer" width="100%"/>
+⭐ If you like this project, consider giving it a star!
 
-**Live App:** [abhishekkothe.shinyapps.io/dynamic-reporting-tool](https://abhishekkothe.shinyapps.io/dynamic-reporting-tool/)
-&nbsp;&bull;&nbsp;
-**GitHub:** [Abhishek7439/dynamic-reporting-tool](https://github.com/Abhishek7439/dynamic-reporting-tool)
+Made with ❤️ using **R + Shiny**
 
-Made with :heart: using **R + Shiny** &nbsp;|&nbsp; Group Academic Project 2026
+</div>
 
 </div>
