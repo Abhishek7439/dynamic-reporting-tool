@@ -1,5 +1,5 @@
 # =============================================================================
-#  Dynamic Reporting Tool — ui.R   (DARK PREMIUM THEME)
+#  Dynamic Reporting Tool â€” ui.R   (DARK PREMIUM THEME)
 #  Authors : Group Academic Project  |  Date: 2026-03-31
 # =============================================================================
 
@@ -9,14 +9,14 @@ library(DT)
 library(plotly)
 library(shinyWidgets)
 
-# ── Custom dark CSS ────────────────────────────────────────────────────────
+# â”€â”€ Custom dark CSS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 dark_css <- "
-/* ── Google Font ── */
+/* â”€â”€ Google Font â”€â”€ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    BASE
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 *, *::before, *::after { box-sizing: border-box; }
 
 body, .wrapper {
@@ -26,17 +26,17 @@ body, .wrapper {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SCROLLBAR
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 ::-webkit-scrollbar { width:6px; height:6px; }
 ::-webkit-scrollbar-track { background:#0d1117; }
 ::-webkit-scrollbar-thumb { background:#6366f1; border-radius:3px; }
 ::-webkit-scrollbar-thumb:hover { background:#818cf8; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HEADER / NAVBAR
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .skin-blue .main-header .navbar,
 .skin-blue .main-header .logo {
   background: linear-gradient(90deg, #0d1117 0%, #161b2e 100%) !important;
@@ -75,9 +75,9 @@ body, .wrapper {
 .skin-blue .main-header .navbar .nav > li > a { color:#94a3b8 !important; }
 .skin-blue .main-header .navbar .nav > li > a > .label { background:#6366f1 !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SIDEBAR
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .skin-blue .main-sidebar {
   background: #0d1117 !important;
   border-right: 1px solid rgba(99,102,241,0.12) !important;
@@ -207,15 +207,15 @@ body, .wrapper {
 }
 .btn-drt-reset:hover { background: rgba(239,68,68,0.1) !important; border-color: #ef4444 !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CONTENT AREA
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .content-wrapper, .main-footer { background: #080c14 !important; }
 .content { padding: 20px !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    VALUE BOXES (KPI Cards)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .small-box {
   border-radius: 16px !important;
   overflow: hidden !important;
@@ -241,15 +241,15 @@ body, .wrapper {
 .bg-aqua   { background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%) !important; }
 .bg-purple { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    BOXES / CARDS
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .box {
   background: rgba(13,17,30,0.92) !important;
   border: 1px solid rgba(99,102,241,0.12) !important;
   border-radius: 16px !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
-  /* NOTE: NO backdrop-filter here — it creates a CSS stacking context
+  /* NOTE: NO backdrop-filter here â€” it creates a CSS stacking context
      that clips child dropdowns behind sibling boxes. */
   overflow: visible !important;
 }
@@ -277,9 +277,9 @@ body, .wrapper {
 .box-tools .btn { color: #64748b !important; background: transparent !important; border: none !important; }
 .box-tools .btn:hover { color: #a5b4fc !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    TABS (Explorer, Visuals, etc.)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .nav-tabs-custom { background: transparent !important; border: none !important; }
 .nav-tabs-custom > .nav-tabs { background: transparent !important; border-bottom: 1px solid rgba(99,102,241,0.15) !important; }
 .nav-tabs-custom > .nav-tabs > li > a {
@@ -296,9 +296,9 @@ body, .wrapper {
 .nav-tabs-custom > .nav-tabs > li.active { border-top-color: #6366f1 !important; }
 .nav-tabs-custom > .tab-content { background: transparent !important; padding: 12px 0 0 !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    DT TABLE
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .dataTables_wrapper { color: #e2e8f0 !important; }
 table.dataTable { background: transparent !important; color: #cbd5e1 !important; border-collapse: collapse !important; }
 table.dataTable thead th {
@@ -345,9 +345,9 @@ table.dataTable tbody td { border-bottom: 1px solid rgba(255,255,255,0.04) !impo
 }
 .dt-buttons .btn:hover { background: rgba(99,102,241,0.25) !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    FORM CONTROLS (main body)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .form-control, .selectize-input {
   background: rgba(255,255,255,0.05) !important;
   border: 1px solid rgba(99,102,241,0.2) !important;
@@ -356,7 +356,7 @@ table.dataTable tbody td { border-bottom: 1px solid rgba(255,255,255,0.04) !impo
   font-size: 13px !important;
 }
 .form-control:focus { border-color: #6366f1 !important; box-shadow: 0 0 0 3px rgba(99,102,241,0.2) !important; }
-/* ── Selectize dropdowns: must float above ALL cards ── */
+/* â”€â”€ Selectize dropdowns: must float above ALL cards â”€â”€ */
 .selectize-dropdown {
   background: #161b2e !important;
   border: 1px solid rgba(99,102,241,0.3) !important;
@@ -386,9 +386,9 @@ table.dataTable tbody td { border-bottom: 1px solid rgba(255,255,255,0.04) !impo
 label { color: #94a3b8 !important; font-size: 12.5px !important; font-weight: 500 !important; }
 .radio label, .checkbox label { color: #cbd5e1 !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    DOWNLOAD / ACTION BUTTONS (body)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .btn-success {
   background: linear-gradient(135deg, #059669, #10b981) !important;
   border: none !important;
@@ -425,15 +425,15 @@ label { color: #94a3b8 !important; font-size: 12.5px !important; font-weight: 50
 .btn-lg { padding: 12px 24px !important; font-size: 14px !important; }
 .btn-block { width: 100% !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RADIO BUTTONS
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 input[type='radio']:checked { accent-color: #6366f1; }
 input[type='checkbox']:checked { accent-color: #6366f1; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    VERBATIM TEXT (summary output)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 pre.shiny-text-output, pre {
   background: rgba(0,0,0,0.35) !important;
   border: 1px solid rgba(99,102,241,0.12) !important;
@@ -444,30 +444,59 @@ pre.shiny-text-output, pre {
   font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
 }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    TABLE (snapshot)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .shiny-html-output table {
   color: #cbd5e1 !important;
   font-size: 12px !important;
   border-collapse: collapse !important;
   width: 100% !important;
+  background: transparent !important;
 }
 .shiny-html-output table thead th {
-  background: rgba(99,102,241,0.15) !important;
+  background: rgba(99,102,241,0.2) !important;
   color: #a5b4fc !important;
   padding: 9px 12px !important;
-  border-bottom: 1px solid rgba(99,102,241,0.2) !important;
+  border-bottom: 1px solid rgba(99,102,241,0.25) !important;
   font-size: 11px !important;
   font-weight: 600 !important;
   letter-spacing: 0.4px;
 }
-.shiny-html-output table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02) !important; }
-.shiny-html-output table tbody td { padding: 8px 12px !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; }
+/* Force ALL tbody rows dark â€” override Bootstrap white default */
+.shiny-html-output table tbody tr,
+.shiny-html-output table tbody tr td,
+.shiny-html-output table.table-striped > tbody > tr:nth-child(odd) > td,
+.shiny-html-output table.table-striped > tbody > tr:nth-child(even) > td { 
+  background: #0d111e !important; 
+  background-color: #0d111e !important;
+  color: #cbd5e1 !important;
+  padding: 9px 12px !important;
+  border-color: rgba(99,102,241,0.12) !important;
+}
+.shiny-html-output table tbody tr:nth-child(even),
+.shiny-html-output table tbody tr:nth-child(even) td { 
+  background: #111827 !important; 
+  background-color: #111827 !important;
+}
+.shiny-html-output table tbody tr:hover,
+.shiny-html-output table tbody tr:hover td { 
+  background: rgba(99,102,241,0.15) !important; 
+  background-color: rgba(99,102,241,0.15) !important;
+}
+.shiny-html-output table tbody td {
+  color: #cbd5e1 !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+/* Also target Bootstrap's .table-striped which overrides tr bg */
+.shiny-html-output .table-striped > tbody > tr:nth-of-type(odd) > * { background-color: #0d111e !important; color: #cbd5e1 !important; }
+.shiny-html-output .table-striped > tbody > tr:nth-of-type(even) > * { background-color: #111827 !important; color: #cbd5e1 !important; }
+.shiny-html-output .table > tbody > tr > td { background-color: inherit !important; color: #cbd5e1 !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    NOTIFICATION
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .shiny-notification {
   background: #161b2e !important;
   border-left: 4px solid #6366f1 !important;
@@ -479,9 +508,9 @@ pre.shiny-text-output, pre {
 .shiny-notification-message { border-left-color: #10b981 !important; }
 .shiny-notification-error   { border-left-color: #ef4444 !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    REPORT PREVIEW card
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .report-preview-card {
   background: rgba(0,0,0,0.3) !important;
   padding: 22px !important;
@@ -501,18 +530,18 @@ pre.shiny-text-output, pre {
 .report-preview-card ul li { color: #94a3b8 !important; font-size: 12.5px !important; margin-bottom: 4px !important; }
 .report-preview-card p, .report-preview-card em { color: #64748b !important; font-size: 12.5px !important; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    GLOW PULSE on chart wrappers
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @keyframes glowPulse {
   0%, 100% { box-shadow: 0 0 0 rgba(99,102,241,0); }
   50%       { box-shadow: 0 0 20px rgba(99,102,241,0.15); }
 }
 .plotly-chart-wrapper { animation: glowPulse 4s ease-in-out infinite; }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    STAT BADGE (inline metric pill)
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .stat-pill {
   display: inline-block;
   background: rgba(99,102,241,0.14);
@@ -525,9 +554,9 @@ pre.shiny-text-output, pre {
   letter-spacing: 0.3px;
 }
 
-/* ═══════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    MISC FIXES
-═══════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .shiny-progress-indicator { background: #6366f1 !important; }
 .shiny-spinner-output-container { background: transparent !important; }
 .modal-content {
@@ -544,12 +573,12 @@ pre.shiny-text-output, pre {
 .modebar-btn path { fill: #64748b !important; }
 .modebar-btn:hover path { fill: #a5b4fc !important; }
 
-/* ── Stacking context safety net ── */
+/* â”€â”€ Stacking context safety net â”€â”€ */
 .tab-pane, .tab-content { overflow: visible !important; }
 .content-wrapper { overflow: visible !important; }
 .plotly-chart-wrapper { position: relative; z-index: 1; overflow: hidden; }
 
-/* ── Shiny disconnected / grey overlay ── */
+/* â”€â”€ Shiny disconnected / grey overlay â”€â”€ */
 /* Override the default white/grey reconnecting screen */
 #shiny-disconnected-overlay {
   background: rgba(8, 12, 20, 0.92) !important;
@@ -572,11 +601,11 @@ pre.shiny-text-output, pre {
 .shiny-shiny-shiny-shiny-busy { opacity: 0 !important; }
 "
 
-# ── UI ─────────────────────────────────────────────────────────────────────
+# â”€â”€ UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 ui <- dashboardPage(
   skin = "blue",
 
-  # ── Header ──────────────────────────────────────────────────────────────
+  # â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   dashboardHeader(
     title = tags$span(
       tags$span(
@@ -604,7 +633,7 @@ ui <- dashboardPage(
     )
   ),
 
-  # ── Sidebar ─────────────────────────────────────────────────────────────
+  # â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   dashboardSidebar(
     width = 255,
     sidebarMenu(
@@ -659,7 +688,7 @@ ui <- dashboardPage(
     )
   ),
 
-  # ── Body ─────────────────────────────────────────────────────────────────
+  # â”€â”€ Body â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   dashboardBody(
     tags$head(
       tags$style(HTML(dark_css)),
@@ -676,7 +705,7 @@ ui <- dashboardPage(
     tabItems(
 
       # ============================================================ #
-      #  TAB 1 — Dashboard                                           #
+      #  TAB 1 â€” Dashboard                                           #
       # ============================================================ #
       tabItem(
         tabName = "dashboard",
@@ -735,7 +764,7 @@ ui <- dashboardPage(
       ),
 
       # ============================================================ #
-      #  TAB 2 — Data Explorer                                       #
+      #  TAB 2 â€” Data Explorer                                       #
       # ============================================================ #
       tabItem(
         tabName = "explorer",
@@ -748,11 +777,11 @@ ui <- dashboardPage(
             status = "primary", solidHeader = FALSE, width = 12,
             fluidRow(
               column(4,
-                selectInput("col_select", "📌 Display Columns",
+                selectInput("col_select", "ðŸ“Œ Display Columns",
                             choices = NULL, multiple = TRUE)
               ),
               column(4,
-                selectInput("sort_col", "↕ Sort By", choices = NULL)
+                selectInput("sort_col", "â†• Sort By", choices = NULL)
               ),
               column(4,
                 tags$div(style = "padding-top:4px;",
@@ -774,7 +803,7 @@ ui <- dashboardPage(
       ),
 
       # ============================================================ #
-      #  TAB 3 — Visualizations                                      #
+      #  TAB 3 â€” Visualizations                                      #
       # ============================================================ #
       tabItem(
         tabName = "visuals",
@@ -843,7 +872,7 @@ ui <- dashboardPage(
       ),
 
       # ============================================================ #
-      #  TAB 4 — Report Export                                       #
+      #  TAB 4 â€” Report Export                                       #
       # ============================================================ #
       tabItem(
         tabName = "export",
@@ -854,7 +883,7 @@ ui <- dashboardPage(
               "Configure Report"
             ),
             status = "primary", solidHeader = FALSE, width = 6,
-            textInput("report_title",  "Report Title",  value = "Dynamic Report — Analysis Summary"),
+            textInput("report_title",  "Report Title",  value = "Dynamic Report â€” Analysis Summary"),
             textInput("report_author", "Author Name",   value = "Group Academic Project"),
             textAreaInput("report_notes", "Analysis Notes",
                           value = "This report was generated using the Dynamic Reporting Tool built with R Shiny.",
@@ -888,7 +917,7 @@ ui <- dashboardPage(
       ),
 
       # ============================================================ #
-      #  TAB 5 — About                                               #
+      #  TAB 5 â€” About                                               #
       # ============================================================ #
       tabItem(
         tabName = "about",
@@ -917,7 +946,7 @@ ui <- dashboardPage(
 
               fluidRow(
                 column(6,
-                  tags$h4("🛠 Technology Stack",
+                  tags$h4("ðŸ›  Technology Stack",
                     style="color:#e2e8f0; font-weight:700; font-size:14px; margin-bottom:12px;"),
                   tags$div(
                     lapply(
@@ -945,7 +974,7 @@ ui <- dashboardPage(
                   )
                 ),
                 column(6,
-                  tags$h4("✨ Key Features",
+                  tags$h4("âœ¨ Key Features",
                     style="color:#e2e8f0; font-weight:700; font-size:14px; margin-bottom:12px;"),
                   tags$div(
                     lapply(
@@ -972,14 +1001,14 @@ ui <- dashboardPage(
               ),
 
               tags$div(style="height:20px;"),
-              tags$h4("📦 Built-in Datasets",
+              tags$h4("ðŸ“¦ Built-in Datasets",
                 style="color:#e2e8f0; font-weight:700; font-size:14px; margin-bottom:12px;"),
               fluidRow(
                 lapply(
                   list(
                     list("mtcars",     "#6366f1", "32 obs",  "11 vars", "Motor Trend 1974 car tests"),
                     list("iris",       "#10b981", "150 obs", "5 vars",  "Fisher's flower measurements"),
-                    list("airquality", "#06b6d4", "153 obs", "6 vars",  "NY air quality May–Sep 1973"),
+                    list("airquality", "#06b6d4", "153 obs", "6 vars",  "NY air quality Mayâ€“Sep 1973"),
                     list("Upload CSV", "#f59e0b", "Any",     "Any",     "Your own data source")
                   ),
                   function(d) {
