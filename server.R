@@ -1,5 +1,5 @@
 # =============================================================================
-#  Dynamic Reporting Tool — server.R
+#  Dynamic Reporting Tool â€” server.R
 #  Authors : Group Academic Project
 #  Date    : 2026-03-31
 # =============================================================================
@@ -14,7 +14,7 @@ library(shinyWidgets)
 library(scales)
 library(openxlsx)
 
-# ── Safe package loader ──────────────────────────────────────────────────────
+# â”€â”€ Safe package loader â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 safe_require <- function(pkg) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
     message("Installing: ", pkg)
@@ -23,14 +23,14 @@ safe_require <- function(pkg) {
   library(pkg, character.only = TRUE)
 }
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 numeric_vars <- function(df) names(df)[sapply(df, is.numeric)]
 factor_vars  <- function(df) names(df)[sapply(df, function(x) is.factor(x) || is.character(x))]
 
-# ─────────────────────────────────────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 server <- function(input, output, session) {
 
-  # ── 1. Reactive: load chosen dataset ─────────────────────────────────────
+  # â”€â”€ 1. Reactive: load chosen dataset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   base_data <- reactive({
     req(input$dataset_choice)
     df <- switch(input$dataset_choice,
@@ -66,7 +66,7 @@ server <- function(input, output, session) {
     df
   })
 
-  # ── 2. Dynamic sidebar filters ────────────────────────────────────────────
+  # â”€â”€ 2. Dynamic sidebar filters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$dynamic_filters <- renderUI({
     df <- base_data()
     req(df)
@@ -81,7 +81,7 @@ server <- function(input, output, session) {
       rng <- range(df[[v]], na.rm = TRUE)
       filter_list[[paste0("slider_", v)]] <- sliderInput(
         inputId = paste0("filter_num_", v),
-        label   = paste("📏", v),
+        label   = paste("ðŸ“", v),
         min     = floor(rng[1]),
         max     = ceiling(rng[2]),
         value   = c(floor(rng[1]), ceiling(rng[2])),
@@ -94,7 +94,7 @@ server <- function(input, output, session) {
       lvls <- levels(factor(df[[v]]))
       filter_list[[paste0("pick_", v)]] <- pickerInput(
         inputId  = paste0("filter_cat_", v),
-        label    = paste("🏷", v),
+        label    = paste("ðŸ·", v),
         choices  = lvls,
         selected = lvls,
         multiple = TRUE,
@@ -107,7 +107,7 @@ server <- function(input, output, session) {
     do.call(tagList, filter_list)
   })
 
-  # ── 3. Reactive: apply filters ────────────────────────────────────────────
+  # â”€â”€ 3. Reactive: apply filters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   filtered_data <- eventReactive(
     eventExpr = list(input$apply_filters, base_data()),
     ignoreNULL = FALSE, {
@@ -135,12 +135,12 @@ server <- function(input, output, session) {
         }
       }
 
-      validate(need(nrow(df) > 0, "⚠️ No rows match the current filters."))
+      validate(need(nrow(df) > 0, "âš ï¸ No rows match the current filters."))
       df
     }
   )
 
-  # ── Reset filters ──────────────────────────────────────────────────────────
+  # â”€â”€ Reset filters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   observeEvent(input$reset_filters, {
     df <- base_data()
     num_vars <- numeric_vars(df)
@@ -155,10 +155,10 @@ server <- function(input, output, session) {
       lvls <- levels(factor(df[[v]]))
       updatePickerInput(session, paste0("filter_cat_", v), selected = lvls)
     }
-    showNotification("✅ Filters reset successfully", type = "message", duration = 2)
+    showNotification("âœ… Filters reset successfully", type = "message", duration = 2)
   })
 
-  # ── 4. Update explorer selects ────────────────────────────────────────────
+  # â”€â”€ 4. Update explorer selects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   observe({
     df <- filtered_data()
     req(df)
@@ -167,7 +167,7 @@ server <- function(input, output, session) {
     updateSelectInput(session, "sort_col",   choices = nm, selected = nm[1])
   })
 
-  # ── 5. Update visualisation selects ──────────────────────────────────────
+  # â”€â”€ 5. Update visualisation selects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   observe({
     df <- filtered_data()
     req(df)
@@ -183,7 +183,7 @@ server <- function(input, output, session) {
                       selected = "none")
   })
 
-  # ── 6. KPI Value Boxes ───────────────────────────────────────────────────
+  # â”€â”€ 6. KPI Value Boxes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$vbox_rows    <- renderValueBox({
     valueBox(nrow(filtered_data()), "Total Rows", icon = icon("database"),
              color = "blue")
@@ -202,7 +202,7 @@ server <- function(input, output, session) {
              color = if (n_miss == 0) "green" else "red")
   })
 
-  # ── 7. Dashboard Distribution Plot ───────────────────────────────────────
+  # â”€â”€ 7. Dashboard Distribution Plot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$dashboard_dist_plot <- renderPlotly({
     df  <- filtered_data()
     nv  <- numeric_vars(df)
@@ -228,13 +228,13 @@ server <- function(input, output, session) {
       )
   })
 
-  # ── 8. Dataset Snapshot ───────────────────────────────────────────────────
+  # â”€â”€ 8. Dataset Snapshot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$dashboard_snapshot <- renderTable({
     df <- filtered_data()
     head(df[, head(names(df), 5)], 8)
-  }, striped = TRUE, hover = TRUE, bordered = TRUE, digits = 2)
+  }, striped = FALSE, hover = FALSE, bordered = TRUE, digits = 2)
 
-  # ── 9. Correlation Heatmap ────────────────────────────────────────────────
+  # â”€â”€ 9. Correlation Heatmap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$corr_heatmap <- renderPlotly({
     df  <- filtered_data()
     nv  <- numeric_vars(df)
@@ -269,13 +269,13 @@ server <- function(input, output, session) {
       )
   })
 
-  # ── 10. Statistical Summary ───────────────────────────────────────────────
+  # â”€â”€ 10. Statistical Summary â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$summary_output <- renderPrint({
     df <- filtered_data()
     summary(df)
   })
 
-  # ── 11. Data Table (Explorer Tab) ─────────────────────────────────────────
+  # â”€â”€ 11. Data Table (Explorer Tab) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$data_table <- renderDT({
     df  <- filtered_data()
     req(df)
@@ -311,13 +311,13 @@ server <- function(input, output, session) {
     )
   })
 
-  # ── 12. CSV Download ──────────────────────────────────────────────────────
+  # â”€â”€ 12. CSV Download â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$download_csv <- downloadHandler(
     filename = function() paste0("report_data_", Sys.Date(), ".csv"),
     content  = function(file) write.csv(filtered_data(), file, row.names = FALSE)
   )
 
-  # ── 13. Excel Download ────────────────────────────────────────────────────
+  # â”€â”€ 13. Excel Download â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$download_xlsx <- downloadHandler(
     filename = function() paste0("report_data_", Sys.Date(), ".xlsx"),
     content  = function(file) {
@@ -331,7 +331,7 @@ server <- function(input, output, session) {
     }
   )
 
-  # ── 14. Main Interactive Chart ────────────────────────────────────────────
+  # â”€â”€ 14. Main Interactive Chart â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$main_chart <- renderPlotly({
     df    <- filtered_data()
     xvar  <- req(input$x_var)
@@ -458,7 +458,7 @@ server <- function(input, output, session) {
     p
   })
 
-  # ── 15. Faceted Chart ────────────────────────────────────────────────────
+  # â”€â”€ 15. Faceted Chart â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$facet_chart <- renderPlotly({
     df   <- filtered_data()
     xvar <- req(input$x_var)
@@ -512,7 +512,7 @@ server <- function(input, output, session) {
       )
   })
 
-  # ── 16. Report Preview ────────────────────────────────────────────────────
+  # â”€â”€ 16. Report Preview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   output$report_preview <- renderUI({
     df       <- filtered_data()
     nv       <- numeric_vars(df)
@@ -530,7 +530,7 @@ server <- function(input, output, session) {
 
     if ("kpi" %in% sections) {
       preview <- tagList(preview,
-        tags$h4("📊 KPI Summary", style = "color:#06b6d4;"),
+        tags$h4("ðŸ“Š KPI Summary", style = "color:#06b6d4;"),
         tags$ul(
           tags$li(paste("Rows:", nrow(df))),
           tags$li(paste("Variables:", ncol(df))),
@@ -542,7 +542,7 @@ server <- function(input, output, session) {
 
     if ("stats" %in% sections) {
       preview <- tagList(preview,
-        tags$h4("📋 Analysis Notes", style = "color:#06b6d4;"),
+        tags$h4("ðŸ“‹ Analysis Notes", style = "color:#06b6d4;"),
         tags$p(input$report_notes)
       )
     }
@@ -553,7 +553,7 @@ server <- function(input, output, session) {
     )
   })
 
-  # ── 17. Report Export ─────────────────────────────────────────────────────
+  # â”€â”€ 17. Report Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   # Helper: register pandoc from common Windows install locations
   find_and_set_pandoc <- function() {
@@ -583,7 +583,7 @@ server <- function(input, output, session) {
     nv     <- names(df)[sapply(df, is.numeric)]
     n_miss <- sum(is.na(df))
 
-    # ── Table rows helper ────────────────────────────────────────────────────
+    # â”€â”€ Table rows helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     df_html <- function(d, max_rows = 50) {
       d   <- head(d, max_rows)
       hdr <- paste0("<th>", names(d), "</th>", collapse = "")
@@ -600,13 +600,13 @@ server <- function(input, output, session) {
       )
     }
 
-    # ── Summary helper ───────────────────────────────────────────────────────
+    # â”€â”€ Summary helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     summary_html <- function(d) {
       smry <- capture.output(summary(d))
       paste0('<pre>', paste(smry, collapse = "\n"), '</pre>')
     }
 
-    # ── KPI cards ────────────────────────────────────────────────────────────
+    # â”€â”€ KPI cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     kpi_html <- if ("kpi" %in% sections) {
       paste0(
         '<h2>&#128202; KPI Summary</h2>',
@@ -632,7 +632,7 @@ server <- function(input, output, session) {
       '<h2>&#128202; Visualisations</h2><p class="note">Interactive charts are available in the live dashboard at <strong>http://127.0.0.1:3838</strong></p>'
     else ""
 
-    # ── Assemble full HTML ───────────────────────────────────────────────────
+    # â”€â”€ Assemble full HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     paste0('<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -731,7 +731,7 @@ server <- function(input, output, session) {
 
       pandoc_ok <- find_and_set_pandoc()
 
-      # ── Try rmarkdown render ──────────────────────────────────────────────
+      # â”€â”€ Try rmarkdown render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (pandoc_ok) {
         tmpdir   <- tempdir()
         rmd_file <- file.path(tmpdir, paste0("report_", format(Sys.time(), "%H%M%S"), ".Rmd"))
@@ -792,20 +792,20 @@ server <- function(input, output, session) {
 
         if (result == "ok") {
           showNotification(
-            paste0("✅ Report generated successfully (", input$report_format, ")"),
+            paste0("âœ… Report generated successfully (", input$report_format, ")"),
             type = "message", duration = 4
           )
           return(invisible(NULL))
         }
 
-        # rmarkdown failed — fall through to HTML fallback
+        # rmarkdown failed â€” fall through to HTML fallback
         showNotification(
-          paste("rmarkdown failed — generating HTML instead:", result),
+          paste("rmarkdown failed â€” generating HTML instead:", result),
           type = "warning", duration = 6
         )
       }
 
-      # ── Pure HTML fallback (no pandoc needed) ────────────────────────────
+      # â”€â”€ Pure HTML fallback (no pandoc needed) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       html_out <- build_html_report(
         title        = input$report_title,
         author       = input$report_author,
@@ -820,16 +820,16 @@ server <- function(input, output, session) {
       writeLines(html_out, file)
 
       showNotification(
-        "✅ HTML report downloaded (open in any browser)",
+        "âœ… HTML report downloaded (open in any browser)",
         type = "message", duration = 5
       )
     }
   )
 
-  # ── Notify on filter application ─────────────────────────────────────────
+  # â”€â”€ Notify on filter application â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   observeEvent(input$apply_filters, {
     showNotification(
-      paste("✅ Filters applied —", nrow(filtered_data()), "rows selected"),
+      paste("âœ… Filters applied â€”", nrow(filtered_data()), "rows selected"),
       type = "message", duration = 3
     )
   })
