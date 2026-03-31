@@ -9,7 +9,7 @@
 
 ### A production-ready, interactive data analytics & reporting dashboard built with R Shiny
 
-*A group academic project featuring real-time filtering, 6 chart types, automated report generation, and a premium dark glassmorphism UI*
+*A academic project featuring real-time filtering, 6 chart types, automated report generation, and a premium dark glassmorphism UI*
 
 **[🚀 Live Demo →](https://abhishek7439.shinyapps.io/dynamic-reporting-tool)**
 
